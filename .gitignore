@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python & speech service
+venv/
+services/speech/venv/
+**/__pycache__/
+*.pyc
+
+# testing & temporary runs
+test-results/
+.kilo/
+*.log

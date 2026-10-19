@@ -1,26 +1,231 @@
 @import "tailwindcss";
 
+@theme {
+  /* Responsive Breakpoints */
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 96rem;
+
+  /* Grain Design Tokens — Colors */
+  --color-forest-ink: #009959;
+  --color-vine: #00b96c;
+  --color-neon-sprout: #00ff95;
+  --color-ice-blue: #3de1ff;
+  --color-obsidian: #000000;
+  --color-graphite: #141414;
+  --color-carbon: #313232;
+  --color-slate: #545454;
+  --color-fog: #707070;
+  --color-ash: #949494;
+  --color-mist: #d6d6d6;
+  --color-cloud: #e6e6e6;
+  --color-veil: #f0f0f0;
+  --color-paper: #fafafa;
+
+  /* Typography */
+  --font-sans: var(--font-inter-variable), ui-sans-serif, system-ui, sans-serif;
+  --font-inter-variable: var(--font-inter-variable), ui-sans-serif, system-ui, sans-serif;
+  --font-poppins: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+
+  /* Typography — Scale */
+  --text-caption: 12px;
+  --leading-caption: 15.6px;
+  --tracking-caption: -0.36px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 20px;
+  --tracking-body-sm: -0.42px;
+  --text-body: 16px;
+  --leading-body: 24px;
+  --tracking-body: -0.32px;
+  --text-subheading: 18px;
+  --leading-subheading: 27px;
+  --tracking-subheading: -0.36px;
+  --text-heading-sm: 20px;
+  --leading-heading-sm: 30px;
+  --tracking-heading-sm: -0.4px;
+  --text-heading: 32px;
+  --leading-heading: 41.6px;
+  --tracking-heading: -0.96px;
+  --text-heading-lg: 36px;
+  --leading-heading: 46.8px;
+  --tracking-heading-lg: -1.08px;
+  --text-display: 38px;
+  --leading-display: 47.5px;
+
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+  --radius-3xl-2: 30px;
+  --radius-3xl-3: 40px;
+
+  /* Shadows */
+  --shadow-sm: rgba(0, 0, 0, 0.04) 0px 4px 8px 0px;
+  --shadow-md: rgba(0, 0, 0, 0.08) 0px 4px 16px 0px;
+  --shadow-md-2: rgba(0, 0, 0, 0.05) 0px 0px 12px 0px inset;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fafafa;
+  --foreground: #141414;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  background-color: #fafafa;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Poppins Display Heading: weight 600 at 38px, line-height 1.25, #141414 */
+.font-poppins-display {
+  font-family: var(--font-poppins);
+  font-weight: 600;
+  font-size: 38px;
+  line-height: 1.25;
+  color: #141414;
+}
+
+/* Filled Primary Action Button: #009959 background, #fafafa text, 10px radius */
+.btn-grain-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #009959;
+  color: #fafafa;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  transition: background-color 150ms ease, opacity 150ms ease;
+  cursor: pointer;
+}
+
+.btn-grain-primary:hover {
+  background-color: #00874e;
+}
+
+/* Outlined Secondary Button: #fafafa background, 1px #d6d6d6 border, #141414 text, 10px radius */
+.btn-grain-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #fafafa;
+  border: 1px solid #d6d6d6;
+  color: #141414;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  transition: background-color 150ms ease, border-color 150ms ease;
+  cursor: pointer;
+}
+
+.btn-grain-secondary:hover {
+  background-color: #f0f0f0;
+  border-color: #949494;
+}
+
+/* Ghost Action Link */
+.link-grain-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #141414;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.link-grain-ghost:hover {
+  background-color: #f0f0f0;
+}
+
+/* Document-like Feature Card: #fafafa background, 10px radius, 1px #e6e6e6 border, shadow-sm */
+.card-grain {
+  background-color: #fafafa;
+  border-radius: 10px;
+  border: 1px solid #e6e6e6;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 8px 0px;
+  padding: 24px;
+}
+
+/* Product Screenshot Frame: 14px radius, 1px #e6e6e6 border, shadow-md */
+.screenshot-grain {
+  background-color: #fafafa;
+  border-radius: 14px;
+  border: 1px solid #e6e6e6;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 16px 0px;
+}
+
+/* Trust / Compliance Badge Pill: 10px radius, 1px #e6e6e6 border, #fafafa background */
+.badge-grain {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #fafafa;
+  border-radius: 10px;
+  border: 1px solid #e6e6e6;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #545454;
+}
+
+/* Atmospheric Section Wash */
+.bg-atmospheric-wash {
+  background: linear-gradient(114deg, rgba(30, 229, 146, 0.15), rgba(0, 128, 74, 0.05));
+}
+
+/* Custom Minimal Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fafafa;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d6d6d6;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #949494;
+}
+
+/* Two-Section Interview Deck Grid: Side-by-Side on Desktop (>=960px), Stacked on Mobile */
+.interview-deck-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+@media (min-width: 960px) {
+  .interview-deck-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
